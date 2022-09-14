@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLabelsText()
+        animButton.setTitle(labelSetup[index].preset, for: .normal)
     }
     
     private func setLabelsText() {
@@ -32,7 +33,6 @@ class ViewController: UIViewController {
             \(labelSetup[index].duration)
             \(labelSetup[index].delay)
         """
-        animButton.setTitle(labelSetup[index].preset, for: .normal)
     }
     
     @IBAction func animationButton(_ sender: SpringButton) {
@@ -41,15 +41,17 @@ class ViewController: UIViewController {
             animationView.force = labelSetup[index].force
             animationView.duration = labelSetup[index].duration
             animationView.delay = labelSetup[index].delay
-            sender.titleLabel?.text = labelSetup[index].preset
+            
         setLabelsText()
-        
         animationView.animate()
+        
         index += 1
         
-        if index > labelSetup.count {
+        if index >= labelSetup.count {
             index = 0
         }
+        
+        sender.setTitle(labelSetup[index].preset, for: .normal)
     }
     
     
