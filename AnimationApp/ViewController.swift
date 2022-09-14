@@ -7,26 +7,49 @@
 //
 
 import Spring
+import Darwin
 
 class ViewController: UIViewController {
     
     
     @IBOutlet var animationView: SpringView!
     @IBOutlet var taxtLabel: UILabel!
+    @IBOutlet var animButton: SpringButton!
     
     private let labelSetup = AnimatingTypes.getAnimationSetup()
+    private var index = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        setLabelsText()
     }
     
+    private func setLabelsText() {
+        taxtLabel.text = """
+            \(labelSetup[index].preset)
+            \(labelSetup[index].curve)
+            \(labelSetup[index].force)
+            \(labelSetup[index].duration)
+            \(labelSetup[index].delay)
+        """
+        animButton.setTitle(labelSetup[index].preset, for: .normal)
+    }
     
     @IBAction func animationButton(_ sender: SpringButton) {
-        animationView.animation = "pop"
-        animationView.animate()
+            animationView.animation = labelSetup[index].preset
+            animationView.curve = labelSetup[index].curve
+            animationView.force = labelSetup[index].force
+            animationView.duration = labelSetup[index].duration
+            animationView.delay = labelSetup[index].delay
+            sender.titleLabel?.text = labelSetup[index].preset
+        setLabelsText()
         
+        animationView.animate()
+        index += 1
+        
+        if index > labelSetup.count {
+            index = 0
+        }
     }
     
     

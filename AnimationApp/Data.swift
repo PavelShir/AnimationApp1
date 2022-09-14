@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DataManager {
+class Data {
         
     let presets = ["pop", "shake", "fall", "zoomOut", "zoomIn", "fadeInUp", "fadeInDown", "fadeInRight", "fadeInLeft", "fadeOutIn"]
     let curves = ["easeOutSine", "easeInOutSine", "easeInQuad", "easeOutQuad", "easeInOutQuad", "easeInCubic", "easeOutCubic", "easeInOutCubic", "easeInQuart", "easeInSine"]

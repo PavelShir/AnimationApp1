@@ -69,6 +69,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="animButton" destination="6zb-Q0-KiD" id="aLV-1L-PoO"/>
                         <outlet property="animationView" destination="kfx-w5-Kvv" id="hAx-cJ-AeW"/>
                         <outlet property="taxtLabel" destination="F6V-n3-rKm" id="IGW-fk-0jj"/>
                     </connections>

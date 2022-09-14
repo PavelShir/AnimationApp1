@@ -12,9 +12,9 @@ struct AnimatingTypes {
     
     let preset: String
     let curve: String
-    let force: String
-    let duration: String
-    let delay: String
+    let force: Double
+    let duration: Double
+    let delay: Double
 
 }
 
@@ -22,21 +22,35 @@ extension AnimatingTypes {
 
     static func getAnimationSetup() -> [AnimatingTypes] {
             
-            var persons = [Person]()
-            let data = DataManager()
+        var animationTypes = [AnimatingTypes]()
+        let data = Data()
             
-            let namesShuffled = data.names.shuffled()
-            let surnameShuffled = data.surnames.shuffled()
-            let phonesShuffled = data.phoneNambers.shuffled()
-            let emailsShuffled = data.emails.shuffled()
+        let presetShuffled = data.presets.shuffled()
+        let curveShuffled = data.curves.shuffled()
+        let forceShuffled = data.forces.shuffled()
+        let durationShuffled = data.durations.shuffled()
+        let delayShuffled = data.delays.shuffled()
+        
+        let itarationCount = min(
+            presetShuffled.count,
+            curveShuffled.count,
+            forceShuffled.count,
+            durationShuffled.count,
+            delayShuffled.count
+        )
+        
+        for index in 0..<itarationCount {
             
-            for index in 0..<data.names.count {
-            
-                persons.append(Person(
-                    name: namesShuffled[index],
-                    surname: surnameShuffled[index],
-                    phoneNumber: phonesShuffled[index],
-                    email: emailsShuffled[index]))
+                animationTypes.append(
+                    AnimatingTypes(
+                    preset: presetShuffled[index],
+                    curve: curveShuffled[index],
+                    force: forceShuffled[index],
+                    duration: durationShuffled[index],
+                    delay: delayShuffled[index]
+                    ))
             }
-         return persons
+         return animationTypes
         }
+    }
+
